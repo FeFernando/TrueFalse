@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <title>Verdadeiro ou Falso</title>
+</head>
+
+<style>
+    html,
+    body {
+        display: grid;
+        height: 100vh;
+        margin: 0;
+    }
+
+    section {
+        place-self: center;
+        background-color: #FAED27;
+        max-width: 350px;
+        width: 300px;
+        border-radius: 20px;
+        max-height: 400px;
+        height: 400px;
+        border: solid 3px black;
+        border-radius: 10px;
+        box-shadow: 5px 10px 0px 2px rgb(0 0 0);
+    }
+
+    header h1 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 25px;
+        text-align: center;
+        color: rgb(71, 71, 71);
+    }
+
+    button {
+        width: 100px;
+        height: 50px;
+        background-color: #323232;
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        border-style: none;
+        border: solid 3px black;
+        border-radius: 10px;
+        box-shadow: 4px 3px 0px 0px rgb(0 0 0);
+    }
+
+    button:hover {
+        background-color: #555555;
+    }
+
+    #perguntaDiv{
+        font-size: large;
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    #respostaDiv{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr); /* Define três colunas com largura igual */
+        gap: 10px;
+        justify-content: center;
+        
+    }
+
+    #verdadeiro, #falso{
+        place-self: center;
+    }
+    
+</style>
+
+<body>
+    <section>
+        <header>
+            <h1>Verdadeiro ou falso</h1>
+        </header>
+        <div id="perguntaDiv"></div>
+        <div id="respostaDiv">
+            <button id="verdadeiro">Verdadeiro</button>
+            <button id="falso">Falso</button>
+        </div>
+    </section>
+
+    <script>
+        let perguntaDiv = document.getElementById('perguntaDiv')
+        let respVer = document.getElementById('verdadeiro')
+        let respFals = document.getElementById('falso')
+
+        let perguntas = [
+            {
+                pergunta: 'A Terra é o maior planeta do sistema solar?',
+                resposta: 'Falso'
+            },
+            {
+                pergunta: 'O Sol é uma estrela.',
+                resposta: 'Verdadeiro'
+            },
+            {
+                pergunta: 'A água ferve a 100 graus Celsius ao nível do mar.',
+                resposta: 'Verdadeiro'
+            }
+        ];
+
+
+        function exibirPergunta() {
+            perguntaDiv.innerHTML = perguntas[i].pergunta
+        }
+        let i = 0;
+        /*O parametro buttonPressed é criado pois nao podemos passar o valor falso ou verdadeiro direto
+        , uma vez que adicionamos um evento aos botoes para adicionar os parametro verdadeiro ou falso
+        ou seja se o parametro que for passado no botao for diferente da resposta do objeto respostas 
+        alertará que o usuario errou*/
+        function verificarResposta(buttonPressed) {
+
+            if (buttonPressed === perguntas[i].resposta) {
+                alert('Você acertou')
+            } else {
+                alert('VocÊ errou')
+            }
+
+            i++
+
+            if (i < perguntas.length) {
+                exibirPergunta()
+            } else {
+                alert('Fim do quiz')
+            }
+
+        }
+
+
+
+
+        // adiciona um evento de click ao button, Chama a função verificarResposta, e para mudar o parametro da função verificar resposta para 'Verdadeiro'
+        respVer.addEventListener('click', function () {
+            verificarResposta('Verdadeiro')
+        })
+
+        respFals.addEventListener('click', function () {
+            verificarResposta('Falso')
+        })
+
+        exibirPergunta()
+
+
+
+
+    </script>
+
+</body>
+
+</html>
